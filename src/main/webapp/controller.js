@@ -5,13 +5,13 @@ app.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
-            templateUrl: 'pages/main.html',
-            controller: 'clientCtrl'
+            templateUrl : 'pages/main.html',
+            controller  : 'clientCtrl'
         })
 
         .when('/new', {
-            templateUrl: 'pages/clientform.html',
-            controller: 'postController'
+            templateUrl : 'pages/clientform.html',
+            controller  : 'postController'
         })
 });
 
