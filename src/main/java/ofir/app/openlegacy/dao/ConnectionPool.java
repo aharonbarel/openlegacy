@@ -19,7 +19,7 @@ public enum ConnectionPool {
     ConnectionPool() {
         availableConnections = new HashSet<>();
         busyConnections = new HashSet<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
                 Class.forName(driver);
             } catch (ClassNotFoundException e) {
