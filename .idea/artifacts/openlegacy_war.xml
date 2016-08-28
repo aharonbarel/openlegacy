@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="openlegacy:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="openlegacy.war">
+      <element id="artifact" artifact-name="openlegacy:war exploded" />
+    </root>
+  </artifact>
+</component>

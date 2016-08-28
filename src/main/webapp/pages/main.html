@@ -1,0 +1,34 @@
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">oCMS</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/new">New Client Form</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" ng-controller="clientCtrl" ng-show="myData.length > 0">
+    <h2>Clients</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="client in myData">
+            <td>{{client.id}}</td>
+            <td>{{client.name}}</td>
+            <td>{{client.address}}</td>
+            <td>{{client.phone}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
