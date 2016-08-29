@@ -9,7 +9,7 @@
         </ul>
     </div>
 </nav>
-<div class="container" ng-controller="clientCtrl" ng-show="clientList.length > 0">
+<div class="container" ng-controller="clientCtrl" ng-init="initClientList()" ng-show="clientList.length > 0">
     <h2>Clients</h2>
     <table class="table table-hover">
         <thead>

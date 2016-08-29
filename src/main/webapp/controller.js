@@ -12,21 +12,31 @@ app.config(function ($routeProvider) {
             controller  : 'postController'
         })
 
-        .when('/client/', {
+        .when('/client/:clientid',  {
             templateUrl : 'pages/clientdetails.html',
             controller  : 'clientCtrl'
         })
 });
 
-app.controller('clientCtrl', function($scope, $http, $location) {
+app.controller('clientCtrl', function($scope, $http, $routeParams, $location) {
     $scope.clientList = [];
-    $http.get("/openlegacy/web/client").then(function (response) {
-        $scope.clientList = response.data;
-    });
-
-    $scope.getClient = function (clientId) {
-        $location.path("#/client/" + clientId);
-    }
+    $scope.initClientList = function () {
+        $http.get('/openlegacy/web/client').then(function (response) {
+            $scope.clientList = response.data;
+        });
+    };
+    $scope.oneclient = {};
+    $scope.getClient = function (clientid) {
+        $http({
+            method  : 'GET',
+            url     : '/openlegacy/web/client/' + clientid,
+            headers : {'Content-Type': 'application/json'}
+        })
+            .then(function (response) {
+            $scope.oneclient = response.data;
+            $location.path('/client/' + clientid);
+        });
+    };
 });
 
 app.controller('postController', function($scope, $http, $location) {
