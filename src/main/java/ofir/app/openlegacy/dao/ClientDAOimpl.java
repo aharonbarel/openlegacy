@@ -8,15 +8,14 @@ import java.util.Map;
 import ofir.app.openlegacy.pojo.Client;
 
 public enum ClientDAOimpl implements ClientDAO{
-
     INSTANCE;
-
+    /*
     ConnectionPool pool = ConnectionPool.INSTANCE;
-
+    */
     private Map<Integer, Client> clientMock;
     private int fakeId;
 
-    private ClientDAOimpl() {
+    ClientDAOimpl() {
         clientMock = new HashMap<>();
         fakeId = 0;
     }
@@ -27,7 +26,7 @@ public enum ClientDAOimpl implements ClientDAO{
 
     @Override
     public List<Client> getClients() {
-        return new ArrayList<Client>(clientMock.values());
+        return new ArrayList<>(clientMock.values());
     }
 
     @Override
