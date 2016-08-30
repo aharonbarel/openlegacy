@@ -3,6 +3,7 @@ package ofir.app.openlegacy.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +30,19 @@ enum ConnectionPool {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+
+        Connection connection = getConnection();
+
+        String query = "CREATE TABLE APP.CLIENT(id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), name VARCHAR(100), address VARCHAR(100), phone VARCHAR(100))";
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException e) {
+            System.out.println("Table already exists!");
+        } finally {
+            returnConnection(connection);
         }
     }
 
