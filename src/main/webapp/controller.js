@@ -9,23 +9,22 @@ app.config(function ($routeProvider) {
 
         .when('/new', {
             templateUrl : 'pages/clientform.html',
-            controller  : 'postController'
+            controller  : 'clientCtrl'
         })
 
         .when('/client/:clientid',  {
             templateUrl : 'pages/clientdetails.html',
             controller  : 'clientCtrl'
         })
+
+        .when('/client/edit/:clientid',  {
+            templateUrl : 'pages/editclient.html',
+            controller  : 'clientCtrl'
+        })
 });
 
 app.controller('clientCtrl', function($scope, $http, $route, $location) {
-    $scope.clientList = [];
-    $scope.initClientList = function () {
-        $http.get('/openlegacy/web/client').then(function (response) {
-            $scope.clientList = response.data;
-        });
-    };
-
+    //get single client
     $scope.oneclient = {};
     $scope.initClient = function () {
         var param = $route.current.params.clientid;
@@ -38,20 +37,20 @@ app.controller('clientCtrl', function($scope, $http, $route, $location) {
         return clientid;
     };
 
-    $scope.removeClient = function (client) {
+    //get all clients
+    $scope.clientList = [];
+    $scope.initClientList = function () {
         $http({
-            method  :   'DELETE',
-            url     : '/openlegacy/web/client',
-            data    : client,
+            method  :   'GET',
+            url     :   '/openlegacy/web/client',
             headers : {'Content-Type': 'application/json'}
         })
-            .then(function () {
-                $location.path('/');
+            .then(function (response) {
+                $scope.clientList = response.data;
             });
     };
-});
 
-app.controller('postController', function($scope, $http, $location) {
+    //post new client
     $scope.client = {};
     $scope.submitForm = function() {
         $http({
@@ -64,12 +63,34 @@ app.controller('postController', function($scope, $http, $location) {
                 $location.path('/');
             });
     };
-});
 
-/*
-app.controller('deleteController', function ($scope, $http) {
+    //update client
+    $scope.editClient = function (client) {
+        $location.path('/client/edit/' + client.id);
+    };
+    $scope.submitEdit = function() {
+        $http({
+            method  : 'PUT',
+            url     : '/openlegacy/web/client/',
+            data    : $scope.oneclient,
+            headers : {'Content-Type': 'application/json'}
+        })
+            .then(function(response) {
+                console.log(response);
+                $location.path('/');
+            });
+    };
+
+    //remove client
     $scope.removeClient = function (client) {
-        alert(client);
+        $http({
+            method  :   'DELETE',
+            url     : '/openlegacy/web/client',
+            data    : client,
+            headers : {'Content-Type': 'application/json'}
+        })
+            .then(function () {
+                $route.reload();
+            });
     };
 });
-*/

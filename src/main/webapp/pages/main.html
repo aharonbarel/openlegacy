@@ -9,6 +9,7 @@
         </ul>
     </div>
 </nav>
+
 <div class="container" ng-controller="clientCtrl" ng-init="initClientList()" ng-show="clientList.length > 0">
     <h2>Clients</h2>
     <table class="table table-hover">
@@ -27,6 +28,7 @@
             <td>{{client.name}}</td>
             <td>{{client.address}}</td>
             <td>{{client.phone}}</td>
+            <td><button class="btn btn-primary" ng-click="editClient(client); $event.stopPropagation();">Edit</button></td>
             <td><button class="btn btn-danger" ng-click="removeClient(client); $event.stopPropagation();">Delete</button></td>
         </tr>
         </tbody>

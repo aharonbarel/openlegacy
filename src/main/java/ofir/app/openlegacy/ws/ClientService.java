@@ -20,32 +20,32 @@ import ofir.app.openlegacy.pojo.Client;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClientService {
-	
-	private ClientDAO dao = ClientDAOimpl.INSTANCE;
-	
-	@POST
-	public Client createClient(Client client) {
-		return dao.createClient(client);
-	}
-	
-	@GET
-	public List<Client> getClients() {
-		return dao.getClients();
-	}
-	
-	@GET
-	@Path("{id}")
-	public Client getClientById(@PathParam("id") int id) {
-		return dao.getClientById(id);
-	}
-	
-	@PUT
-	public Client updateClient(Client client) {
-		return dao.updateClient(client);
-	}
-	
-	@DELETE
-	public Client deleteClient(Client client) {
-		return dao.deleteClient(client);
-	}
+
+    private ClientDAO dao = ClientDAOimpl.INSTANCE;
+
+    @POST
+    public Client createClient(Client client) {
+        return dao.createClient(client);
+    }
+
+    @GET
+    public List<Client> getClients() {
+        return dao.getClients();
+    }
+
+    @GET
+    @Path("{id}")
+    public Client getClientById(@PathParam("id") int id) {
+        return dao.getClientById(id);
+    }
+
+    @PUT
+    public Client updateClient(Client client) {
+        return dao.updateClient(client);
+    }
+
+    @DELETE
+    public Client deleteClient(Client client) {
+        return dao.deleteClient(client);
+    }
 }
