@@ -9,10 +9,9 @@
         </ul>
     </div>
 </nav>
-<div class="container" ng-controller="clientCtrl">
-    <h2>Clients</h2>
+<div class="container" ng-controller="clientCtrl" ng-init="initClient()">
     <h1>{{oneclient.id}}</h1>
     <h1>{{oneclient.name}}</h1>
-    <h1>{{oneclient.phone}}</h1>
     <h1>{{oneclient.address}}</h1>
+    <h1>{{oneclient.phone}}</h1>
 </div>

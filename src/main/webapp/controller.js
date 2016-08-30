@@ -18,25 +18,39 @@ app.config(function ($routeProvider) {
         })
 });
 
-app.controller('clientCtrl', function($scope, $http, $routeParams, $location) {
+app.controller('clientCtrl', function($scope, $http, $route, $location) {
     $scope.clientList = [];
     $scope.initClientList = function () {
         $http.get('/openlegacy/web/client').then(function (response) {
             $scope.clientList = response.data;
         });
     };
+
     $scope.oneclient = {};
-    $scope.getClient = function (clientid) {
-        $http({
-            method  : 'GET',
-            url     : '/openlegacy/web/client/' + clientid,
-            headers : {'Content-Type': 'application/json'}
-        })
-            .then(function (response) {
+    $scope.initClient = function () {
+        var param = $route.current.params.clientid;
+        $http.get('/openlegacy/web/client/' + param).then(function (response) {
             $scope.oneclient = response.data;
-            $location.path('/client/' + clientid);
         });
     };
+    $scope.getClient = function (clientid) {
+        $location.path('/client/' + clientid);
+        return clientid;
+    };
+    /*
+    $scope.oneclient = {};
+    $scope.getClient = function(clientid) {
+        $http({
+            method  :   'GET',
+            url     :   '/openlegacy/web/client/' + clientid,
+            headers :   {'Content-Type': 'application/json'}
+        })
+            .then(function(response) {
+                $scope.oneclient = response.data;
+                $location.path('/client/' + clientid);
+            });
+    };
+    */
 });
 
 app.controller('postController', function($scope, $http, $location) {
