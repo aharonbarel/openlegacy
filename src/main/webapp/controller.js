@@ -37,20 +37,18 @@ app.controller('clientCtrl', function($scope, $http, $route, $location) {
         $location.path('/client/' + clientid);
         return clientid;
     };
-    /*
-    $scope.oneclient = {};
-    $scope.getClient = function(clientid) {
+
+    $scope.removeClient = function (client) {
         $http({
-            method  :   'GET',
-            url     :   '/openlegacy/web/client/' + clientid,
-            headers :   {'Content-Type': 'application/json'}
+            method  :   'DELETE',
+            url     : '/openlegacy/web/client',
+            data    : client,
+            headers : {'Content-Type': 'application/json'}
         })
-            .then(function(response) {
-                $scope.oneclient = response.data;
-                $location.path('/client/' + clientid);
+            .then(function () {
+                $location.path('/');
             });
     };
-    */
 });
 
 app.controller('postController', function($scope, $http, $location) {
@@ -67,3 +65,11 @@ app.controller('postController', function($scope, $http, $location) {
             });
     };
 });
+
+/*
+app.controller('deleteController', function ($scope, $http) {
+    $scope.removeClient = function (client) {
+        alert(client);
+    };
+});
+*/

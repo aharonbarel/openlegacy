@@ -9,9 +9,16 @@
         </ul>
     </div>
 </nav>
+
 <div class="container" ng-controller="clientCtrl" ng-init="initClient()">
-    <h1>{{oneclient.id}}</h1>
-    <h1>{{oneclient.name}}</h1>
-    <h1>{{oneclient.address}}</h1>
-    <h1>{{oneclient.phone}}</h1>
+    <h2>Client details for: {{oneclient.name}}</h2>
+    <h2></h2>
+    <dl class="dl-horizontal">
+        <dt>Id</dt>
+        <dd>{{oneclient.id}}</dd>
+        <dt>Address</dt>
+        <dd>{{oneclient.address}}</dd>
+        <dt>Phone</dt>
+        <dd>{{oneclient.phone}}</dd>
+    </dl>
 </div>
