@@ -13,7 +13,7 @@ enum ConnectionPool {
     private Set<Connection> busyConnections;
 
     private final String driver = "org.apache.derby.jdbc.ClientDriver";
-    private final String url = "jdbc:derby://localhost:1527/openlegacyDB";
+    private final String url = "jdbc:derby://localhost:1527/openlegacyDB;create=true";
 
     ConnectionPool() {
         availableConnections = new HashSet<>();
